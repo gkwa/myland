@@ -9,6 +9,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/gkwa/myland/core"
 	"github.com/gkwa/myland/internal/logger"
 )
 
@@ -20,17 +21,20 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "myland",
-	Short: "A brief description of your application",
-	Long:  `A longer description that spans multiple lines and likely contains examples and usage of using your application.`,
+	Use:   "myland [flags] file [file...]",
+	Short: "Escape template delimiters in files",
+	Long: `Process one or more files and escape template delimiters.
+For each input file, creates a corresponding .out file containing the escaped content.`,
+	Args: cobra.MinimumNArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		logger := LoggerFrom(cmd.Context())
+		processor := core.NewProcessor(logger)
+		return processor.ProcessFiles(args)
+	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-		// Initialize the console logger just before running
-		// a command only if one wasn't provided. This allows other
-		// callers (e.g. unit tests) to inject their own logger ahead of time.
 		if cliLogger.IsZero() {
 			cliLogger = logger.NewConsoleLogger(verbose, logFormat == "json")
 		}
-
 		ctx := logr.NewContext(context.Background(), cliLogger)
 		cmd.SetContext(ctx)
 	},

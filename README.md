@@ -1,10 +1,10 @@
 # myland
 
-A tool to escape template delimiters in files, primarily for use with [boilerplate](https://github.com/gruntwork-io/boilerplate).
+A tool to escape template delimiters in files, primarily for use with [boilerplate](https://github.com/gruntwork-io/boilerplate?tab=readme-ov-file#boilerplate).
 
 ## Problem
 
-When using [boilerplate](https://github.com/gruntwork-io/boilerplate) with files that contain template delimiters (e.g. `{{}}` in justfile), there is a conflict since boilerplate uses these same delimiters for its own templating.
+When using boilerplate with files that contain template delimiters (e.g. `{{}}` in justfile), there is a conflict since boilerplate uses these same delimiters for its own templating.
 
 For example, this justfile line:
 

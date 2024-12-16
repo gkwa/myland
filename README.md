@@ -1,5 +1,3 @@
-````
--- README.md --
 # myland
 
 A tool to escape template delimiters in files, primarily for use with [boilerplate](https://github.com/gruntwork-io/boilerplate).
@@ -64,11 +62,6 @@ fmt:
 The escaped file can now be used with boilerplate without conflicts.
 
 ## Development
-
-Requires:
-
-- Go 1.21+
-- make
 
 Setup:
 

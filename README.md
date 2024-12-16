@@ -10,7 +10,7 @@ For example, this justfile line:
 
 ```makefile
 test -z "{{ shell_files }}" || shfmt -w -s -i 4 {{ shell_files }}
-````
+```
 
 Conflicts with boilerplate's template processing. The solution is to escape the delimiters:
 
@@ -28,10 +28,7 @@ To escape delimiters in a file:
 myland justfile
 ```
 
-This will process the file in place, converting:
-
-- `{{` to `{{"{{"}}`
-- `}}` to `{{"}}"}}`
+This will process the file and write the escaped output back to the original file. The tool will only modify files that actually need escaping - if no changes are needed, the file remains untouched.
 
 ## Install
 
